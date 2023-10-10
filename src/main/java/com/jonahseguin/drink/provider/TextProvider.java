@@ -21,18 +21,26 @@ public class TextProvider extends DrinkProvider<String> {
     }
 
     @Override
-    public boolean allowNullArgument() {
+    public boolean isAsync() {
         return false;
     }
 
     @Override
-    public boolean isAsync() {
-        return false;
+    public boolean allowNullArgument() {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public String defaultNullValue() {
+        return "";
     }
 
     @Nullable
     @Override
     public String provide(@Nonnull CommandArg arg, @Nonnull List<? extends Annotation> annotations) throws CommandExitMessage {
+        String s = arg.get();
+        if (s == null) return "";
         StringBuilder builder = new StringBuilder(arg.get());
         while (arg.getArgs().hasNext()) {
             builder.append(" ").append(arg.getArgs().next());

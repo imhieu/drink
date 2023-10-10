@@ -125,7 +125,6 @@ public class DrinkCommandContainer extends Command implements PluginIdentifiable
         return tabCompleter.onTabComplete(sender, this, alias, args);
     }
 
-    @Override
     public List<String> tabComplete(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
         return tabCompleter.onTabComplete(sender, this, alias, args);
     }

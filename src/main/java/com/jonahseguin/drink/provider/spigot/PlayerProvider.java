@@ -4,6 +4,7 @@ import com.jonahseguin.drink.argument.CommandArg;
 import com.jonahseguin.drink.exception.CommandExitMessage;
 import com.jonahseguin.drink.parametric.DrinkProvider;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -33,7 +34,7 @@ public class PlayerProvider extends DrinkProvider<Player> {
 
     @Override
     public boolean allowNullArgument() {
-        return false;
+        return true;
     }
 
     @Nullable
@@ -46,6 +47,7 @@ public class PlayerProvider extends DrinkProvider<Player> {
     @Override
     public Player provide(@Nonnull CommandArg arg, @Nonnull List<? extends Annotation> annotations) throws CommandExitMessage {
         String name = arg.get();
+        if (name == null) return null;
         Player p = plugin.getServer().getPlayer(name);
         if (p != null) {
             return p;

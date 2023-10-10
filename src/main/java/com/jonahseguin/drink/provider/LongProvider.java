@@ -27,7 +27,7 @@ public class LongProvider extends DrinkProvider<Long> {
 
     @Override
     public boolean allowNullArgument() {
-        return false;
+        return true;
     }
 
     @Nullable
@@ -39,6 +39,7 @@ public class LongProvider extends DrinkProvider<Long> {
     @Override
     public Long provide(@Nonnull CommandArg arg, @Nonnull List<? extends Annotation> annotations) throws CommandExitMessage {
         String s = arg.get();
+        if (s == null) return 0L;
         try {
             return Long.parseLong(s);
         }

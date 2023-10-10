@@ -33,12 +33,14 @@ public class StringProvider extends DrinkProvider<String> {
     @Nullable
     @Override
     public String defaultNullValue() {
-        return null;
+        return "";
     }
 
     @Override
     public String provide(@Nonnull CommandArg arg, @Nonnull List<? extends Annotation> annotations) throws CommandExitMessage {
-        return arg.get();
+        String s = arg.get();
+        if (s == null) return "";
+        return s;
     }
 
     @Override

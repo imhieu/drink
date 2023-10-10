@@ -27,7 +27,7 @@ public class DoubleProvider extends DrinkProvider<Double> {
 
     @Override
     public boolean allowNullArgument() {
-        return false;
+        return true;
     }
 
     @Nullable
@@ -39,6 +39,7 @@ public class DoubleProvider extends DrinkProvider<Double> {
     @Override
     public Double provide(@Nonnull CommandArg arg, @Nonnull List<? extends Annotation> annotations) throws CommandExitMessage {
         String s = arg.get();
+        if (s == null) return 0D;
         try {
             return Double.parseDouble(s);
         }

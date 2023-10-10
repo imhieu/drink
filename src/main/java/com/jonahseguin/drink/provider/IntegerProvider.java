@@ -27,7 +27,7 @@ public class IntegerProvider extends DrinkProvider<Integer> {
 
     @Override
     public boolean allowNullArgument() {
-        return false;
+        return true;
     }
 
     @Nullable
@@ -40,6 +40,7 @@ public class IntegerProvider extends DrinkProvider<Integer> {
     @Nullable
     public Integer provide(@Nonnull CommandArg arg, @Nonnull List<? extends Annotation> annotations) throws CommandExitMessage {
         String s = arg.get();
+        if (s == null) return 0;
         try {
             return Integer.parseInt(s);
         }
